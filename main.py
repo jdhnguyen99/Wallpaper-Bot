@@ -11,7 +11,6 @@ from selenium.webdriver.common.by import By
 from discord.ext import commands,tasks
 secrets = json.load(open("secrets.json"))
 
-#hello
 #XPATH Samples
 #//*[@id="profileBlock"]/div/div[3]/div[1]
 #//*[@id="profileBlock"]/div/div[3]/div[20]
