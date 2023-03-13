@@ -9,7 +9,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from discord.ext import commands,tasks
-secrets = json.load(open("secrets.json"))
+secrets = json.load(open("discord_wallpaper_bot\secrets.json"))
 
 #XPATH Samples
 #//*[@id="profileBlock"]/div/div[3]/div[1]
