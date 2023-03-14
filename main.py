@@ -31,9 +31,10 @@ def wallpaperRandomizer():
     #for loop iterating through all 30 wallpapers on 1 page to check if there are stars.
     wallpaperArray = []
     for i in range(1,30):
-        substring = 'star'
+        substring4 = '4-star'
+        substring5 = '5-star'
         string = driver.find_element(By.XPATH, f'//*[@id="profileBlock"]/div/div[3]/div[{i}]/img[2]').get_attribute('src')
-        if substring in string:
+        if substring4 in string or substring5 in string:
             wallpaperArray.append(i)
     
     #Randomizes the integer from the size of the array to pick out the element index
