@@ -68,6 +68,7 @@ async def on_message(message):
         title,url = wallpaperRandomizer()
         await message.channel.send(title + "\n" + url)
 
-#TODO: make it so that i can only do it. Also once a day.
+#TODO: make a Already Posted file to do a check.
+#      make asynchronous
 
 client.run(secrets['token'])
