@@ -60,11 +60,13 @@ client = discord.Client(intents=intents)
 async def on_ready():
     print(f'We have logged in as {client.user}')
 
+# my userID: 186332743150338048
 @client.event
 async def on_message(message):
-    if message.author.id != 186332743150338048:
+    if message.author.id == client.user:
         return
     if message.content.startswith('!wallpaper'):
+        message.channel.send("I hear you! Give me a moment...")
         title,url = wallpaperRandomizer()
         await message.channel.send(title + "\n" + url)
 
