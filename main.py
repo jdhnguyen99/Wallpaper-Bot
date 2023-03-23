@@ -68,6 +68,7 @@ async def on_message(message):
         title,url = wallpaperRandomizer()
         await message.channel.send(title + "\n" + url)
 
+#steam user id: 186332743150338048
 #TODO: make a Already Posted file to do a check.
 #      make asynchronous
 
