@@ -50,9 +50,17 @@ def wallpaperRandomizer():
     printString = driver.current_url
     driver.close()
     
-    # writing a list for all wallpaper's posted
+    
+    # reading through the list line by line
+    with open('UrlList.txt','r') as f:
+        file_content = f.read()
+        for line in f:
+            if line.strip() == title:
+                return wallpaperRandomizer()
+    
+    # writing a list for all wallpapers posted
     with open('UrlList.txt','a') as f:
-        f.write(title)
+        f.write(title + "\n")
         
     return title, printString
 
