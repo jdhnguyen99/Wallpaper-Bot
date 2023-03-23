@@ -49,6 +49,11 @@ def wallpaperRandomizer():
     title = driver.find_element(By.XPATH, '//*[@id="mainContents"]/div[5]/div[2]').text
     printString = driver.current_url
     driver.close()
+    
+    # writing a list for all wallpaper's posted
+    with open('UrlList.txt','a') as f:
+        f.write(title)
+        
     return title, printString
 
 intents = discord.Intents.default()
