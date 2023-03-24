@@ -3,6 +3,7 @@ import discord
 import random
 import math
 import time
+import datetime
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
@@ -50,17 +51,17 @@ def wallpaperRandomizer():
     printString = driver.current_url
     driver.close()
     
-    
     # reading through the list line by line
-    with open('UrlList.txt','r') as f:
-        file_content = f.read()
+    with open('PostedList.txt','r') as f:
         for line in f:
-            if line.strip() == title:
+            wallpaperData = line.split(':::')
+            if wallpaperData[0] == title:
                 return wallpaperRandomizer()
     
     # writing a list for all wallpapers posted
-    with open('UrlList.txt','a') as f:
-        f.write(title + "\n")
+    with open('PostedList.txt','a') as f:
+        dateString = datetime.datetime.now().strftime("%m-%d-%Y")
+        f.write(title + ":::" + dateString + "\n")
         
     return title, printString
 
@@ -79,9 +80,11 @@ async def on_message(message):
     if message.author.id == client.user:
         return
     if message.content.startswith('!wallpaper'):
-        message.channel.send("I hear you! Give me a moment...")
+        notifMessage = await message.channel.send("I hear you! Give me a moment...")
         title,url = wallpaperRandomizer()
         await message.channel.send(title + "\n" + url)
+        await notifMessage.delete()
+
 
 #steam user id: 186332743150338048
 #TODO: make a Already Posted file to do a check.
