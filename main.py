@@ -50,7 +50,7 @@ def wallpaperRandomizer():
     title = driver.find_element(By.XPATH, '//*[@id="mainContents"]/div[5]/div[2]').text
     printString = driver.current_url
     driver.close()
-    
+
     # reading through the list line by line
     with open('PostedList.txt','r') as f:
         for line in f:
@@ -82,7 +82,9 @@ async def on_message(message):
     if message.content.startswith('!wallpaper'):
         notifMessage = await message.channel.send("I hear you! Give me a moment...")
         title,url = wallpaperRandomizer()
-        await message.channel.send(title + "\n" + url)
+        postMessage = await message.channel.send(title + "\n" + url)
+        await postMessage.add_reaction('👍')
+        await postMessage.add_reaction('👎')
         await notifMessage.delete()
 
 
