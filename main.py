@@ -49,6 +49,19 @@ def wallpaperRandomizer():
     title = driver.find_element(By.XPATH, '//*[@id="mainContents"]/div[5]/div[2]').text
     printString = driver.current_url
     driver.close()
+    
+    
+    # reading through the list line by line
+    with open('UrlList.txt','r') as f:
+        file_content = f.read()
+        for line in f:
+            if line.strip() == title:
+                return wallpaperRandomizer()
+    
+    # writing a list for all wallpapers posted
+    with open('UrlList.txt','a') as f:
+        f.write(title + "\n")
+        
     return title, printString
 
 intents = discord.Intents.default()
@@ -60,11 +73,13 @@ client = discord.Client(intents=intents)
 async def on_ready():
     print(f'We have logged in as {client.user}')
 
+# my userID: 186332743150338048
 @client.event
 async def on_message(message):
-    if message.author.id != 186332743150338048:
+    if message.author.id == client.user:
         return
     if message.content.startswith('!wallpaper'):
+        message.channel.send("I hear you! Give me a moment...")
         title,url = wallpaperRandomizer()
         await message.channel.send(title + "\n" + url)
 
