@@ -25,7 +25,7 @@ def wallpaperRandomizer():
     options.headless = True
     chrome_service = Service('./chromedriver')
     driver = webdriver.Chrome(service=chrome_service,chrome_options=options)
-    pageNum = random.randint(1,2)
+    pageNum = random.randint(1,3)
     wallpaperUrl = f"https://steamcommunity.com/workshop/browse/?appid=431960&browsesort=trend&section=readytouseitems&requiredtags%5B0%5D=Relaxing&requiredtags%5B1%5D=Everyone&excludedtags%5B0%5D=Abstract&excludedtags%5B1%5D=Anime&excludedtags%5B2%5D=Memes&created_date_range_filter_start=0&created_date_range_filter_end=0&updated_date_range_filter_start=0&updated_date_range_filter_end=0&actualsort=trend&p={pageNum}&days=1"
     driver.get(wallpaperUrl)
     
