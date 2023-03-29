@@ -28,16 +28,22 @@ def wallpaperRandomizer():
     pageNum = random.randint(1,3)
     wallpaperUrl = f"https://steamcommunity.com/workshop/browse/?appid=431960&browsesort=trend&section=readytouseitems&requiredtags%5B0%5D=Relaxing&requiredtags%5B1%5D=Everyone&excludedtags%5B0%5D=Abstract&excludedtags%5B1%5D=Anime&excludedtags%5B2%5D=Memes&created_date_range_filter_start=0&created_date_range_filter_end=0&updated_date_range_filter_start=0&updated_date_range_filter_end=0&actualsort=trend&p={pageNum}&days=1"
     driver.get(wallpaperUrl)
+    print(pageNum)
     
     #for loop iterating through all 30 wallpapers on 1 page to check if there are stars.
     wallpaperArray = []
-    for i in range(1,30):
+    for i in range(1,31):
         substring4 = '4-star'
         substring5 = '5-star'
         string = driver.find_element(By.XPATH, f'//*[@id="profileBlock"]/div/div[3]/div[{i}]/img[2]').get_attribute('src')
         if substring4 in string or substring5 in string:
             wallpaperArray.append(i)
     
+    #check if the wallpaperArray is empty
+    if not wallpaperArray:
+        driver.close()
+        return wallpaperRandomizer()
+        
     #Randomizes the integer from the size of the array to pick out the element index
     randomWallpaperArrayInt = random.randint(0,len(wallpaperArray)-1)
     intForImage = wallpaperArray[randomWallpaperArrayInt]
