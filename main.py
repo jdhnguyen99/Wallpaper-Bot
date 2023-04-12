@@ -58,14 +58,14 @@ def wallpaperRandomizer():
     driver.close()
 
     # reading through the list line by line
-    with open('PostedList.txt','r') as f:
+    with open('PostedList.txt','r',encoding='utf-8') as f:
         for line in f:
             wallpaperData = line.split(':::')
             if wallpaperData[0] == title:
                 return wallpaperRandomizer()
     
     # writing a list for all wallpapers posted
-    with open('PostedList.txt','a') as f:
+    with open('PostedList.txt','a',encoding='utf-8') as f:
         dateString = datetime.datetime.now().strftime("%m-%d-%Y")
         f.write(title + ":::" + dateString + "\n")
         
